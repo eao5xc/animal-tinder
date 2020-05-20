@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import ThumbDown from "@material-ui/icons/ThumbDownRounded";
+import ThumbUp from "@material-ui/icons/ThumbUpRounded";
+import Favorite from "@material-ui/icons/FavoriteRounded";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 import AnimalCard from "../Components/AnimalCard";
 import { lightTheme, darkTheme } from "../Theme/Theme";
 import { GlobalStyles } from "../Theme/Global";
@@ -19,21 +23,31 @@ function App() {
 
   // Return the layout based on the current theme
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === "light" ? darkTheme : lightTheme}>
       <div>
         <GlobalStyles />
-        <Button color="inherit" onClick={toggleTheme}>
-          Theme Change
-        </Button>
         <AnimalCard ImageSource={imageSource}></AnimalCard>
-        <Button color="inherit" onClick={toggleTheme}>
-          Dislike theme
-        </Button>
-        <Button color="inherit" onClick={toggleTheme}>
-          SuperLike theme
-        </Button>
-        <Button color="inherit" onClick={toggleTheme}>
-          Like theme
+        <Box component="span" m={8}></Box>
+        <ThumbDown
+          color="primary"
+          style={{ fontSize: 100 }}
+          onClick={toggleTheme}
+        ></ThumbDown>
+        <Box component="span" m={11}></Box>
+        <Favorite
+          color="secondary"
+          style={{ fontSize: 150 }}
+          onClick={toggleTheme}
+        ></Favorite>
+        <Box component="span" m={11}></Box>
+        <ThumbUp
+          color="primary"
+          style={{ fontSize: 100 }}
+          onClick={toggleTheme}
+        ></ThumbUp>
+        <Box component="span" m={20}></Box>
+        <Button color="secondary" onClick={toggleTheme}>
+          change to {theme} theme
         </Button>
       </div>
     </ThemeProvider>
