@@ -35,7 +35,6 @@ function App() {
         <Button color="inherit" onClick={toggleTheme}>
           Like theme
         </Button>
-        <h1>it's a {theme} theme!</h1>
       </div>
     </ThemeProvider>
   );
