@@ -4,11 +4,10 @@ import Button from "@material-ui/core/Button";
 import AnimalCard from "../Components/AnimalCard";
 import { lightTheme, darkTheme } from "../Theme/Theme";
 import { GlobalStyles } from "../Theme/Global";
-
-const imageSource = "https://source.unsplash.com/random";
-
 // The function that toggles between themes
 function App() {
+  const imageSource = "https://source.unsplash.com/random";
+
   const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     if (theme === "light") {
@@ -26,7 +25,7 @@ function App() {
         <Button color="inherit" onClick={toggleTheme}>
           Theme Change
         </Button>
-        <AnimalCard></AnimalCard>
+        <AnimalCard ImageSource={imageSource}></AnimalCard>
         <Button color="inherit" onClick={toggleTheme}>
           Dislike theme
         </Button>
