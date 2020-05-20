@@ -53,7 +53,7 @@ const Content = () => {
       <ThemeProvider theme={theme === "light" ? darkTheme : lightTheme}>
         <GlobalStyles />
         <AnimalCard pet={pets.currentPet}></AnimalCard>
-        <Box component="span" m={8}></Box>
+        <Box component="span" m={5}></Box>
         <ThumbDown
           color="primary"
           style={{ fontSize: 100 }}
