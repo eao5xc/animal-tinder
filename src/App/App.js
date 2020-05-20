@@ -20,7 +20,7 @@ function App() {
       <div>
         <GlobalStyles />
         <button onClick={toggleTheme}>Toggle theme</button>
-        <h1>It's a light theme!</h1>
+        <h1>It's a {theme} theme!</h1>
       </div>
     </ThemeProvider>
   );
