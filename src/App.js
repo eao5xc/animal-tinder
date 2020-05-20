@@ -1,7 +1,8 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import reducer from "./redux/reducer";
+import reducer from "./store/reducer";
+import { like, dislike, superLike } from "./store/actions";
 
 const store = createStore(reducer);
 
@@ -18,7 +19,7 @@ const Content = () => {
   const dispatch = useDispatch();
   const handleLike = () => {
     console.log(pets);
-    dispatch({ type: "LIKE" });
+    dispatch(like());
     console.log(pets);
   };
   return <button onClick={handleLike}>Like</button>;
