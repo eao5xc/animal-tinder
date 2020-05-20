@@ -1,18 +1,26 @@
-import React from 'react';
+import React from "react";
+import { createStore } from "redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import reducer from "./store/reducer";
+import { like, dislike, superLike } from "./store/actions";
 
-function App() {
+const store = createStore(reducer);
+
+export default function App() {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Content />
+    </Provider>
   );
 }
 
-export default App;
+const Content = () => {
+  const pets = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const handleLike = () => {
+    console.log(pets);
+    dispatch(like());
+    console.log(pets);
+  };
+  return <button onClick={handleLike}>Like</button>;
+};
