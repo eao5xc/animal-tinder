@@ -31,18 +31,17 @@ const useStyles = makeStyles((theme) =>
     },
     information: {
       display: "flex",
-      flexWrap: "nowrap",
-      flexDirection: "row",
+      flexDirection: "column",
       "& > *": {
         margin: theme.spacing(0),
-        width: theme.spacing(60),
-        height: theme.spacing(100),
+        width: theme.spacing(30),
+        height: theme.spacing(10),
       },
     },
   })
 );
 
-function AnimalCard({ ImageSource }) {
+function AnimalCard({ pet }) {
   const classes = useStyles();
 
   return (
@@ -53,12 +52,13 @@ function AnimalCard({ ImageSource }) {
             className={classes.image}
             component="img"
             alt="Contemplative Reptile"
-            image={ImageSource}
+            image={pet.image}
           />
         </Paper>
         <Box component="span" m={1}></Box>
         <Paper elevation={-5} className={classes.information}>
-          <h1>ruff!</h1>
+          <h1>{pet.name}</h1>
+          <h2>{pet.breed}</h2>
         </Paper>
       </div>
     </>

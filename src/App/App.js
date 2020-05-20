@@ -11,12 +11,33 @@ import Box from "@material-ui/core/Box";
 import AnimalCard from "../Components/AnimalCard";
 import { lightTheme, darkTheme } from "../Theme/Theme";
 import { GlobalStyles } from "../Theme/Global";
+import { like, dislike, superLike } from "../store/actions";
 
-// The function that toggles between themes
+const store = createStore(reducer);
 
-function App() {
-  const imageSource = "https://source.unsplash.com/random";
-  const store = createStore(reducer);
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Content />
+    </Provider>
+  );
+}
+
+const Content = () => {
+  const pets = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const handleDislike = () => {
+    dispatch(dislike());
+  };
+
+  const handleSuperLike = () => {
+    dispatch(superLike());
+  };
+
+  const handleLike = () => {
+    dispatch(like());
+  };
 
   const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
@@ -27,42 +48,37 @@ function App() {
     }
   };
 
-  // Return the layout based on the current theme
-  return (
-    <ThemeProvider theme={theme === "light" ? darkTheme : lightTheme}>
-      <div>
+  if (pets.currentPet)
+    return (
+      <ThemeProvider theme={theme === "light" ? darkTheme : lightTheme}>
         <GlobalStyles />
-        <AnimalCard ImageSource={imageSource}></AnimalCard>
+        <AnimalCard pet={pets.currentPet}></AnimalCard>
         <Box component="span" m={8}></Box>
         <ThumbDown
           color="primary"
           style={{ fontSize: 100 }}
-          onClick={toggleTheme}
+          onClick={handleDislike}
         ></ThumbDown>
         <Box component="span" m={11}></Box>
         <Favorite
           color="secondary"
           style={{ fontSize: 150 }}
-          onClick={toggleTheme}
+          onClick={handleSuperLike}
         ></Favorite>
         <Box component="span" m={11}></Box>
         <ThumbUp
           color="primary"
           style={{ fontSize: 100 }}
-          onClick={toggleTheme}
+          onClick={handleLike}
         ></ThumbUp>
         <Box component="span" m={20}></Box>
         <Button color="secondary" onClick={toggleTheme}>
           change to {theme} theme
         </Button>
-      </div>
-    </ThemeProvider>
-  );
-}
+      </ThemeProvider>
+    );
 
-export default App;
-
-/* return (
+  return (
     <div>
       {pets.pastPets.map((pet) => {
         return (
@@ -73,4 +89,5 @@ export default App;
         );
       })}
     </div>
-  ); */
+  );
+};
