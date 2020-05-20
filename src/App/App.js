@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-// import Image from "material-ui-image";
 import Button from "@material-ui/core/Button";
+import AnimalCard from "../Components/AnimalCard";
 import { lightTheme, darkTheme } from "../Theme/Theme";
 import { GlobalStyles } from "../Theme/Global";
+
+const imageSource = "https://source.unsplash.com/random";
 
 // The function that toggles between themes
 function App() {
@@ -21,9 +23,10 @@ function App() {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <div>
         <GlobalStyles />
-        <div>
-          <img alt="logo" src="https://source.unsplash.com/random" />
-        </div>
+        <Button color="inherit" onClick={toggleTheme}>
+          Theme Change
+        </Button>
+        <AnimalCard></AnimalCard>
         <Button color="inherit" onClick={toggleTheme}>
           Dislike theme
         </Button>
@@ -33,7 +36,7 @@ function App() {
         <Button color="inherit" onClick={toggleTheme}>
           Like theme
         </Button>
-        <h1>It's a {theme} theme!</h1>
+        <h1>it's a {theme} theme!</h1>
       </div>
     </ThemeProvider>
   );
